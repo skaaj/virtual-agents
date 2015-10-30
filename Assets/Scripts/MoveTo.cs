@@ -5,6 +5,7 @@ public class MoveTo : MonoBehaviour {
 	
 	public Transform goal;
 	private NavMeshAgent agent;
+	public float hp;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -15,6 +16,8 @@ public class MoveTo : MonoBehaviour {
 		if (agent.remainingDistance < 1.0f) {
 			ChangeGoal();
 		}
+
+		hp += Time.deltaTime;
 	}
 
 	void ChangeGoal() {
