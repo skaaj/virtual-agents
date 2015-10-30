@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float velocity;
+	public float _jumpForce = 100.0f;
+	public float _gravity = 10.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,9 +14,15 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float dt = Time.deltaTime;
-		float dx = Input.GetAxis ("Horizontal") * velocity * dt;
-		float dz = Input.GetAxis ("Vertical") * velocity * dt;
+		float dx = Input.GetAxis ("Horizontal");
+		float dy = 0.0f;
+		float dz = Input.GetAxis ("Vertical");
 
-		transform.Translate(new Vector3 (dx, 0.0f, dz));
+		CharacterController cc = GetComponent<CharacterController>();
+
+		if (Input.GetButton ("Jump") && cc.isGrounded)
+			dy = _jumpForce;
+
+		cc.Move (new Vector3 (dx, (dy - _gravity), dz) * velocity * dt);
 	}
 }
