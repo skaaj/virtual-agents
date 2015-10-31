@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveTo : MonoBehaviour {
 	
-	public Transform goal;
+public Vector3 goal;
 	private NavMeshAgent agent;
 	public float hp;
 
@@ -15,12 +15,24 @@ public class MoveTo : MonoBehaviour {
 	void Update() {
 		if (agent.remainingDistance < 1.0f) {
 			ChangeGoal();
+			agent.destination = goal;
 		}
 
-		hp += Time.deltaTime;
+		hp -= Time.deltaTime;
 	}
 
 	void ChangeGoal() {
-		agent.destination = new Vector3 (Random.Range (0, 50), Random.Range (0, 50), Random.Range (0, 50));
+		//goal = new Vector3 (Random.Range (-50, 50), Random.Range (-50, 50), Random.Range (-50, 50));
+		goal = new Vector3 (0, 0, 45);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		Debug.Log ("We entered on something");
+
+		if (other.gameObject.CompareTag ("Pickup"))
+		{
+			other.gameObject.SetActive (false);
+			hp += 100;
+		}
 	}
 }
