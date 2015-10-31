@@ -30,7 +30,7 @@ GameObject:
   - 136: {fileID: 13691132}
   - 23: {fileID: 2355452}
   - 195: {fileID: 19562080}
-  - 114: {fileID: 11444400}
+  - 114: {fileID: 11459524}
   m_Layer: 0
   m_Name: AgentBase
   m_TagString: Untagged
@@ -137,7 +137,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11444400
+--- !u!114 &11459524
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 176368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e469809183c499db4df891d1c25129, type: 3}
+  m_Script: {fileID: 11500000, guid: 809e944de490d4e8db2fb5b96b2e7923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  hp: 0
+  meshRendererFlag: {fileID: 2367054}
+  nav: {fileID: 0}
 --- !u!136 &13691132
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -157,9 +157,9 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176368}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: .5
+  m_Radius: 4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -171,8 +171,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 176368}
   m_Enabled: 1
   m_Radius: .500000119
-  m_Speed: 10
-  m_Acceleration: 8
+  m_Speed: 20
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
