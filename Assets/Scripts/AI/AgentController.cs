@@ -4,6 +4,7 @@ using System.Collections;
 public class AgentController : MonoBehaviour {
 
 	public MeshRenderer meshRendererFlag;
+    public float health;
 
 	[HideInInspector] public IAgentState currentState;
 	[HideInInspector] public IdleState idleState;
@@ -18,6 +19,7 @@ public class AgentController : MonoBehaviour {
 		engageState = new EngageState (this);
 		
 		nav = GetComponent<NavMeshAgent> ();
+        health = 100;
 	}
 	
 	// Use this for initialization

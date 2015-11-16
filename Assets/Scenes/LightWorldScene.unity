@@ -128,40 +128,13 @@ Prefab:
       propertyPath: m_Name
       value: PickupCapsule3
       objectReference: {fileID: 0}
-    - target: {fileID: 112218, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-      propertyPath: m_TagString
-      value: Pickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 13649852, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &232731411 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 112218, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-  m_PrefabInternal: {fileID: 163666978}
 --- !u!4 &232731415 stripped
 Transform:
   m_PrefabParentObject: {fileID: 474482, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
   m_PrefabInternal: {fileID: 163666978}
---- !u!54 &232731416
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 232731411}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &372819658 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433780, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
@@ -262,18 +235,6 @@ Prefab:
     - target: {fileID: 112218, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
       propertyPath: m_Name
       value: PickupCapsule1
-      objectReference: {fileID: 0}
-    - target: {fileID: 474482, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 474482, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 474482, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebea603f4df8e45f9b4b80972bf2156d, type: 2}
@@ -597,14 +558,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 835077827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f696539fd794b4ac29cbf437c45c83bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ff72b7f50c7f4442ac58d1434d9877c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSensitivity: 180
-  climbSpeed: 4
-  normalMoveSpeed: 10
-  slowMoveFactor: .25
-  fastMoveFactor: 3
+  cameraSpeed: 1
+  minHeight: 5
+  maxHeight: 10
+  zoomSpeed: 100
 --- !u!81 &835077829
 AudioListener:
   m_ObjectHideFlags: 0
@@ -667,7 +627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 835077827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.3900003, z: 0}
+  m_LocalPosition: {x: 0, y: 10.3900003, z: -27.2999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -872,7 +832,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1167717142}
-  m_LocalRotation: {x: -.962250292, y: -.0225575734, z: -.257833809, w: .0841861367}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1203,6 +1163,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1796986570}
+  - 114: {fileID: 1796986571}
   m_Layer: 0
   m_Name: Pickups
   m_TagString: Untagged
@@ -1227,6 +1188,17 @@ Transform:
   - {fileID: 1649694717}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1796986571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796986569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e2f3549119b3042925c45253fb8dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1853044508
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,10 @@ public class IdleState : IAgentState
 	{
 		Debug.Log ("Idle Agent entered on something.");
 
-		ToFearState ();
+		//ToFearState ();
+        other.gameObject.SetActive(false);
+        PickupController pc = other.GetComponent<PickupController>();
+        agent.health += pc.energy;
 	}
 	
 	public void ToIdleState()
