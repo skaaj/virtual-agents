@@ -14,8 +14,11 @@ public class PickupBatchController : MonoBehaviour {
         foreach (Transform child in this.transform)
         {
             PickupController pc = child.GetComponent<PickupController>();
-            if(pc.CanRespawn())
+            if (pc.CanRespawn())
+            {
+                pc.Initialize();
                 pc.gameObject.SetActive(true);
+            }
         }
     }
 }

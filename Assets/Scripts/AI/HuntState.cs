@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleState : IAgentState 
+public class HuntState : IAgentState 
 	
 {
 	private readonly AgentController agent;
 	
-	public IdleState (AgentController agentCtrl)
+	public HuntState (AgentController agentCtrl)
 	{
 		agent = agentCtrl;
 	}
@@ -42,7 +42,7 @@ public class IdleState : IAgentState
         }
 	}
 	
-	public void ToIdleState()
+	public void ToHuntState()
 	{
 		Debug.LogError ("Can't transition to same state");
 	}

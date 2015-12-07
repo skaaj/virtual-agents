@@ -2,14 +2,17 @@
 
 public interface IAgentState
 {
-	
 	void UpdateState();
 	
 	void OnTriggerEnter (Collider other);
 	
 	void ToIdleState();
 	
-	void ToFearState();
+	void ToHuntState();
 
-	void ToEngageState();
+    void ToFearState();
+    
+    void ToEngageState();
+
+	void ToCounterState();
 }

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleState : IAgentState 
+public class CounterState : IAgentState 
 	
 {
 	private readonly AgentController agent;
 	
-	public IdleState (AgentController agentCtrl)
+	public CounterState (AgentController agentCtrl)
 	{
 		agent = agentCtrl;
 	}
@@ -41,12 +41,18 @@ public class IdleState : IAgentState
                 break;
         }
 	}
-	
-	public void ToIdleState()
+
+
+    public void ToIdleState()
+    {
+        agent.currentState = agent.idleState;
+    }
+
+	public void ToCounterState()
 	{
 		Debug.LogError ("Can't transition to same state");
 	}
-	
+
 	public void ToFearState()
 	{
 		agent.currentState = agent.fearState;

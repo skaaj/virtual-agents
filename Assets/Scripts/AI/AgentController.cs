@@ -7,25 +7,29 @@ public class AgentController : MonoBehaviour {
     public float health;
 
 	[HideInInspector] public IAgentState currentState;
-	[HideInInspector] public IdleState idleState;
-	[HideInInspector] public FearState fearState;
-	[HideInInspector] public EngageState engageState;
 	[HideInInspector] public NavMeshAgent nav;
-	
+    [HideInInspector] public IdleState idleState;
+    [HideInInspector] public HuntState huntState;
+    [HideInInspector] public FearState fearState;
+    [HideInInspector] public CounterState counterState;
+    [HideInInspector] public EngageState engageState;
+
+    // Use this for initialization
+    void Start()
+    {
+        currentState = idleState;
+    }
+
 	private void Awake()
 	{
-		idleState  = new IdleState (this);
-		fearState  = new FearState (this);
-		engageState = new EngageState (this);
-		
+        idleState = new IdleState(this);
+        huntState = new HuntState(this);
+        fearState = new FearState(this);
+        engageState = new EngageState(this);
+        counterState = new CounterState(this);
+
 		nav = GetComponent<NavMeshAgent> ();
         health = 100;
-	}
-	
-	// Use this for initialization
-	void Start () 
-	{
-		currentState = idleState;
 	}
 	
 	// Update is called once per frame
