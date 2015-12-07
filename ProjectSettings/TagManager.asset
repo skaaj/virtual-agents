@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pickup
-  - New Tag
+  - AgentGood
+  - AgentBad
+  - MapObject
   layers:
   - Default
   - TransparentFX
