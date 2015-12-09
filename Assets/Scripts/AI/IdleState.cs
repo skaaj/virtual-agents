@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class IdleState : IAgentState 
-	
 {
 	private readonly AgentController agent;
 	
@@ -10,19 +9,28 @@ public class IdleState : IAgentState
 	{
 		agent = agentCtrl;
 	}
-	
-	// Interface Agent State Implementation
 
-	public void UpdateState()
-	{
-		Move ();
-	}
-	
-	public void OnTriggerEnter (Collider other)
-	{
+    public void UpdateState()
+    {
+        Move();
+    }
+
+    public void Move()
+    {
+        if (agent.nav.remainingDistance < 5)
+        {
+            agent.nav.destination = Debug_GetRandomDestination();
+        }
+
+        // Bouger consomme de l'energie
+        agent.health -= Time.deltaTime;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
         string name = other.gameObject.tag;
 
-        Debug.Log("Idle Agent entered on " + name);
+        Debug.Log("Exploring Agent entered on " + name);
 
         switch (name)
         {
@@ -35,43 +43,42 @@ public class IdleState : IAgentState
                 Debug.Log("Hello Mister!");
                 break;
             case "AgentBad":
-                Debug.Log("GTFO!");
+                ToFearState();
                 break;
             default:
                 break;
         }
-	}
-	
-	public void ToIdleState()
+    }
+
+    private Vector3 Debug_GetRandomDestination()
+    {
+        return new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
+    }
+
+    // States' transitions Implementations
+
+    public void ToFearState()
+    {
+        agent.currentState = agent.fearState;
+    }
+
+    public void ToCounterState()
+    {
+        agent.currentState = agent.counterState;
+    }
+
+    public void ToIdleState()
+    {
+        Debug.LogError("Transition to same state forbidden.");
+    }
+
+    public void ToEngageState()
 	{
-		Debug.LogError ("Can't transition to same state");
-	}
-	
-	public void ToFearState()
-	{
-		agent.currentState = agent.fearState;
-	}
-	
-	public void ToEngageState()
-	{
-		agent.currentState = agent.engageState;
+        Debug.LogError("Transition forbidden");
 	}
 
-	// User methods
-
-	public void Move ()
-	{
-		if (agent.nav.remainingDistance < 5) {
-			agent.nav.destination = Debug_GetRandomDestination ();
-			//Debug.Log("Yay! I'm now going to " + agent.nav.destination.ToString() + "!");
-		}
-
-        // Bouger consomme de l'energie
-        agent.health -= Time.deltaTime;
-	}
-
-	private Vector3 Debug_GetRandomDestination()
-	{
-		return new Vector3(Random.Range (-50, 50), 0, Random.Range (-50, 50));
-	}
+    public void ToHuntState()
+    {
+        Debug.LogError("Transition forbidden");
+    }
 }

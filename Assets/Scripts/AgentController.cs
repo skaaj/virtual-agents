@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AgentController : MonoBehaviour {
+public abstract class AgentController : MonoBehaviour {
 
 	public MeshRenderer meshRendererFlag;
     public float health;
@@ -14,13 +14,7 @@ public class AgentController : MonoBehaviour {
     [HideInInspector] public CounterState counterState;
     [HideInInspector] public EngageState engageState;
 
-    // Use this for initialization
-    void Start()
-    {
-        currentState = idleState;
-    }
-
-	private void Awake()
+	protected void Awake()
 	{
         idleState = new IdleState(this);
         huntState = new HuntState(this);
@@ -29,11 +23,10 @@ public class AgentController : MonoBehaviour {
         counterState = new CounterState(this);
 
 		nav = GetComponent<NavMeshAgent> ();
-        health = 100;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		currentState.UpdateState ();
 	}

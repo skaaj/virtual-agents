@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class FearState : IAgentState 
-	
 {
 	private readonly AgentController agent;
 	
@@ -19,7 +18,7 @@ public class FearState : IAgentState
 	
 	public void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Scared Agent entered on something.");
+		Debug.Log ("Scared Agent entered on something");
 	}
 	
 	public void ToIdleState()
@@ -29,11 +28,21 @@ public class FearState : IAgentState
 	
 	public void ToFearState()
 	{
-		agent.currentState = agent.fearState;
-	}
+        Debug.Log("Transition forbidden");
+    }
 	
 	public void ToEngageState()
 	{
-		agent.currentState = agent.engageState;
-	}
+        Debug.Log("Transition forbidden");
+    }
+
+    public void ToHuntState()
+    {
+        Debug.Log("Transition forbidden");
+    }
+
+    public void ToCounterState()
+    {
+        Debug.Log("Transition forbidden");
+    }
 }

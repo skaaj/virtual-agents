@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class EngageState : IAgentState 
-	
 {
 	private readonly AgentController agent;
 	
@@ -13,31 +12,36 @@ public class EngageState : IAgentState
 	
 	public void UpdateState()
 	{
-		agent.nav.destination = Debug_GetRandomDestination ();
+
 	}
-	
-	public void OnTriggerEnter (Collider other)
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Idle Agent entered on something.");
+    }
+
+    public void ToHuntState()
+    {
+        agent.currentState = agent.huntState;
+    }
+
+    public void ToEngageState()
+    {
+        Debug.LogError("Transition to same state forbidden");
+    }
+
+    public void ToIdleState()
 	{
-		Debug.Log ("Idle Agent entered on something.");
-	}
-	
-	public void ToIdleState()
-	{
-		Debug.LogError ("Can't transition to same state");
+		Debug.LogError("Transition forbidden");
 	}
 	
 	public void ToFearState()
 	{
-		agent.currentState = agent.fearState;
-	}
-	
-	public void ToEngageState()
-	{
-		agent.currentState = agent.engageState;
-	}
-	
-	private Vector3 Debug_GetRandomDestination()
-	{
-		return new Vector3(Random.Range (-50, 50), 0, Random.Range (-50, 50));
-	}
+        Debug.LogError("Transition forbidden: Agent engaged until death");
+    }
+
+    public void ToCounterState()
+    {
+        Debug.LogError("Transition forbidden");
+    }
 }

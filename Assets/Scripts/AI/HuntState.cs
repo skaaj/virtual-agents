@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class HuntState : IAgentState 
-	
 {
 	private readonly AgentController agent;
 	
@@ -10,68 +9,39 @@ public class HuntState : IAgentState
 	{
 		agent = agentCtrl;
 	}
-	
-	// Interface Agent State Implementation
 
 	public void UpdateState()
 	{
-		Move ();
+        agent.nav.SetDestination(Vector3.zero);
 	}
 	
 	public void OnTriggerEnter (Collider other)
 	{
-        string name = other.gameObject.tag;
-
-        Debug.Log("Idle Agent entered on " + name);
-
-        switch (name)
-        {
-            case "Pickup":
-                PickupController pc = other.GetComponent<PickupController>();
-                other.gameObject.SetActive(false);
-                agent.health += pc.energy;
-                break;
-            case "AgentGood":
-                Debug.Log("Hello Mister!");
-                break;
-            case "AgentBad":
-                Debug.Log("GTFO!");
-                break;
-            default:
-                break;
-        }
+        // some code here
 	}
-	
-	public void ToHuntState()
+
+    public void ToEngageState()
+    {
+        agent.currentState = agent.engageState;
+    }
+
+    public void ToHuntState()
 	{
-		Debug.LogError ("Can't transition to same state");
+		Debug.LogError ("Transition to same state forbidden");
 	}
 	
 	public void ToFearState()
 	{
-		agent.currentState = agent.fearState;
-	}
-	
-	public void ToEngageState()
-	{
-		agent.currentState = agent.engageState;
-	}
+        Debug.LogError("Hunters are never scared!");
+    }
 
-	// User methods
+    public void ToIdleState()
+    {
+        Debug.LogError("Transition forbidden");
+    }
 
-	public void Move ()
-	{
-		if (agent.nav.remainingDistance < 5) {
-			agent.nav.destination = Debug_GetRandomDestination ();
-			//Debug.Log("Yay! I'm now going to " + agent.nav.destination.ToString() + "!");
-		}
-
-        // Bouger consomme de l'energie
-        agent.health -= Time.deltaTime;
-	}
-
-	private Vector3 Debug_GetRandomDestination()
-	{
-		return new Vector3(Random.Range (-50, 50), 0, Random.Range (-50, 50));
-	}
+    public void ToCounterState()
+    {
+        Debug.LogError("Transition forbidden");
+    }
 }

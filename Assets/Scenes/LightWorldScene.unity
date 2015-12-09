@@ -544,7 +544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &826038238
 Transform:
   m_ObjectHideFlags: 0
@@ -833,6 +833,14 @@ Prefab:
       propertyPath: m_Name
       value: AgentGood1
       objectReference: {fileID: 0}
+    - target: {fileID: 475058, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418162, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
+      propertyPath: cullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
   m_IsPrefabParent: 0
@@ -949,7 +957,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19562080, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
       propertyPath: m_Speed
-      value: 25
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 19562080, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
+      propertyPath: m_AngularSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19562080, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
+      propertyPath: m_Acceleration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82a4532bb71374d89aacccc664035a72, type: 2}
@@ -1341,7 +1357,7 @@ Transform:
   m_GameObject: {fileID: 1853044508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .5, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 10, y: 4, z: 10}
   m_Children: []
   m_Father: {fileID: 576626022}
   m_RootOrder: 1

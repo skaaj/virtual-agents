@@ -30,8 +30,8 @@ GameObject:
   - 136: {fileID: 13662154}
   - 23: {fileID: 2387012}
   - 195: {fileID: 19545046}
-  - 114: {fileID: 11433278}
   - 54: {fileID: 5414446}
+  - 114: {fileID: 11459812}
   m_Layer: 0
   m_Name: AgentBad
   m_TagString: AgentBad
@@ -215,7 +215,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11433278
+--- !u!114 &11459812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -223,10 +223,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 154474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 809e944de490d4e8db2fb5b96b2e7923, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f9310abf5a0a794d811ecfd1ef181d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRendererFlag: {fileID: 2376772}
+  meshRendererFlag: {fileID: 0}
   health: 0
   nav: {fileID: 0}
 --- !u!136 &13662154
