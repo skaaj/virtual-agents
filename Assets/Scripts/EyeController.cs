@@ -6,12 +6,13 @@ public class EyeController : MonoBehaviour {
 
     private Vector3 direction;
     private RaycastHit hit;
-    private List<RaycastHit> hits;
-
+    private List<RaycastHit> hits = new List<RaycastHit>();
 
     public LayerMask cullingMask;
     public int fov;
     public int numRays;
+
+    public NavMeshAgent agent;
 
     // Use this for initialization
     void Start () {
@@ -20,7 +21,7 @@ public class EyeController : MonoBehaviour {
 
     void Awake()
     {
-        hits = new List<RaycastHit>();
+        //hits = new List<RaycastHit>();
     }
 	
 	// Update is called once per frame
@@ -40,12 +41,17 @@ public class EyeController : MonoBehaviour {
             direction = Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
             hit = new RaycastHit();
 
-            if (Physics.Raycast(transform.position, direction, out hit, 15, cullingMask) == false)
+            if (Physics.Raycast(transform.position, direction, out hit, 30, cullingMask) == false)
             {
-                hit.point = transform.position + (direction * 15);
+                hit.point = transform.position + (direction * 30);
             }
 
             hits.Add(hit);
+
+            if(hit.collider && hit.collider.gameObject.tag == "Pickup")
+            {
+                agent.destination = hit.collider.transform.position;
+            }
 
             currentAngle += offsetRays;
         }
