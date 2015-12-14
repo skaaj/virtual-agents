@@ -5,6 +5,8 @@ public interface IAgentState
 	void UpdateState();
 	
 	void OnTriggerEnter (Collider other);
+
+    void OnSee(RaycastHit hit);
 	
 	void ToIdleState();
 	

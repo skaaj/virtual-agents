@@ -43,10 +43,19 @@ public class IdleState : IAgentState
                 Debug.Log("Hello Mister!");
                 break;
             case "AgentBad":
+                agent.fearState.SetHunter(other.transform);
                 ToFearState();
                 break;
             default:
                 break;
+        }
+    }
+
+    public void OnSee(RaycastHit hit)
+    {
+        if (hit.collider && hit.collider.gameObject.tag == "Pickup")
+        {
+            agent.nav.destination = hit.collider.transform.position;
         }
     }
 

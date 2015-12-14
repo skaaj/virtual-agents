@@ -4,7 +4,8 @@ using System.Collections;
 public class EngageState : IAgentState 
 {
 	private readonly AgentController agent;
-	
+    private Transform target;
+
 	public EngageState (AgentController agentCtrl)
 	{
 		agent = agentCtrl;
@@ -12,12 +13,23 @@ public class EngageState : IAgentState
 	
 	public void UpdateState()
 	{
-
-	}
+        agent.meshRendererFlag.material.color = Color.cyan;
+        agent.nav.SetDestination(target.position);
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Idle Agent entered on something.");
+    }
+
+    public void OnSee(RaycastHit hit)
+    {
+        //
+    }
+
+    public void SetTarget(Transform t)
+    {
+        target = t;
     }
 
     public void ToHuntState()

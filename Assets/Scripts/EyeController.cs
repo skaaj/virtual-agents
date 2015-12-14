@@ -48,9 +48,10 @@ public class EyeController : MonoBehaviour {
 
             hits.Add(hit);
 
-            if(hit.collider && hit.collider.gameObject.tag == "Pickup")
+            AgentController ac = GetComponentInParent<AgentController>();
+            if(ac != null)
             {
-                agent.destination = hit.collider.transform.position;
+                ac.OnSee(hit);
             }
 
             currentAngle += offsetRays;

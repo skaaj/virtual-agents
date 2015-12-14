@@ -23,13 +23,6 @@ public class PickupController : MonoBehaviour {
 
     void Update ()
     {
-        MeshRenderer mr = GetComponent<MeshRenderer>();
-        if (mr.material.color.a < 1)
-        {
-            Color color = mr.material.color;
-            color.a += (Time.deltaTime / 50.0f);
-            mr.material.color = color;
-        }
     }
 
     public bool CanRespawn ()
@@ -48,11 +41,6 @@ public class PickupController : MonoBehaviour {
 
     void OnDisable ()
     {
-        print("Disabled!");
-        MeshRenderer mr = GetComponent<MeshRenderer>();
-        Color color = mr.material.color;
-        color.a = 0.0f;
-        mr.material.color = color;
         _timestamp = Time.time + cooldown;
     }
 }

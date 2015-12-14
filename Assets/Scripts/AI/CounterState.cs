@@ -21,6 +21,11 @@ public class CounterState : IAgentState
         // do stuff
 	}
 
+    public void OnSee(RaycastHit hit)
+    {
+        //
+    }
+
     public void ToIdleState()
     {
         agent.currentState = agent.idleState;

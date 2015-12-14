@@ -35,4 +35,9 @@ public abstract class AgentController : MonoBehaviour {
 	{
 		currentState.OnTriggerEnter (other);
 	}
+
+    public void OnSee(RaycastHit hit)
+    {
+        currentState.OnSee(hit);
+    }
 }
