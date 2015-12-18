@@ -9,6 +9,7 @@ TagManager:
   - AgentBad
   - MapObject
   - PickupSphere
+  - SocialCollider
   layers:
   - Default
   - TransparentFX

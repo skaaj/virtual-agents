@@ -5,7 +5,9 @@ public class CounterState : IAgentState
 	
 {
 	private readonly AgentController agent;
-	
+
+    private Transform hunter;
+
 	public CounterState (AgentController agentCtrl)
 	{
 		agent = agentCtrl;
@@ -13,17 +15,34 @@ public class CounterState : IAgentState
 
 	public void UpdateState()
 	{
-		// do stuff
-	}
+        if (hunter == null)
+        {
+            ToIdleState();
+            return;
+        }
+        agent.nav.SetDestination(hunter.position);
+
+        if(Vector3.Distance(agent.transform.position, hunter.position) < 5.0f)
+        {
+            AgentController ac = hunter.gameObject.GetComponent<AgentController>();
+            ac.health -= 5 * Time.deltaTime;
+            agent.health += 5 * Time.deltaTime;
+        }
+
+        agent.meshRendererFlag.material.color = Color.green;
+    }
 	
+    public void SetTarget(Transform target)
+    {
+        hunter = target;
+    }
+
 	public void OnTriggerEnter (Collider other)
 	{
-        // do stuff
 	}
 
     public void OnSee(RaycastHit hit)
     {
-        //
     }
 
     public void ToIdleState()

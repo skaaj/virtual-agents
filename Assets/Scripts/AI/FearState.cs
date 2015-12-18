@@ -13,12 +13,22 @@ public class FearState : IAgentState
 	
 	public void UpdateState()
 	{
-		agent.nav.Stop();
+        if(hunter == null)
+        {
+            ToIdleState();
+            return;
+        }
+
 		agent.meshRendererFlag.material.color = Color.red;
 
         if(agent.nav.remainingDistance < 2.0f)
         {
             agent.nav.SetDestination(agent.transform.position + 10 * (agent.transform.position - hunter.transform.position).normalized);
+        }
+
+        if(Vector3.Distance(hunter.position, agent.transform.position) > 20)
+        {
+            ToIdleState();
         }
     }
 	
@@ -38,6 +48,11 @@ public class FearState : IAgentState
     public void SetHunter(Transform t)
     {
         hunter = t;
+    }
+
+    public Transform GetHunter()
+    {
+        return hunter;
     }
 
     public void ToIdleState()

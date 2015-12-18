@@ -13,6 +13,6 @@ public class AgentControllerExplorer : AgentController {
 	{
         base.Awake();
 
-        health = 500;
+        health = 100;
 	}
 }

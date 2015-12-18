@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class AgentController : MonoBehaviour {
 
 	public MeshRenderer meshRendererFlag;
     public float health;
+
+    private List<Transform> _positivePlaces = new List<Transform>();
 
 	[HideInInspector] public IAgentState currentState;
 	[HideInInspector] public NavMeshAgent nav;
@@ -29,6 +32,13 @@ public abstract class AgentController : MonoBehaviour {
 	private void Update () 
 	{
 		currentState.UpdateState ();
+
+        health -= Time.deltaTime;
+
+        if(health <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
 	}
 	
 	private void OnTriggerEnter(Collider other)
@@ -39,5 +49,25 @@ public abstract class AgentController : MonoBehaviour {
     public void OnSee(RaycastHit hit)
     {
         currentState.OnSee(hit);
+    }
+
+    public void SavePlace(Transform t)
+    {
+        _positivePlaces.Add(t);
+    }
+
+    public List<Transform> GetPlaces()
+    {
+        return _positivePlaces;
+    }
+
+    public bool IsScared()
+    {
+        return ReferenceEquals(currentState.GetType(), fearState.GetType());
+    }
+
+    public bool IsExploring()
+    {
+        return ReferenceEquals(currentState.GetType(), idleState.GetType());
     }
 }

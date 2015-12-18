@@ -6,6 +6,8 @@ public class EngageState : IAgentState
 	private readonly AgentController agent;
     private Transform target;
 
+    private bool onlyOnce = true;
+
 	public EngageState (AgentController agentCtrl)
 	{
 		agent = agentCtrl;
@@ -13,8 +15,30 @@ public class EngageState : IAgentState
 	
 	public void UpdateState()
 	{
-        agent.meshRendererFlag.material.color = Color.cyan;
+        if (onlyOnce)
+        {
+            agent.meshRendererFlag.material.color = Color.cyan;
+            onlyOnce = false;
+        }
+
+        if (target == null)
+        {
+            ToHuntState();
+            return;
+        }
+
         agent.nav.SetDestination(target.position);
+
+        if (Vector3.Distance(target.position, agent.transform.position) < 2.0f)
+        {
+            AgentController ac = target.gameObject.GetComponent<AgentController>();
+            ac.health -= 10 * Time.deltaTime;
+            agent.health += 10 * Time.deltaTime;
+        }
+        else if (Vector3.Distance(target.position, agent.transform.position) > 20.0f)
+        {
+            ToHuntState();
+        }
     }
 
     public void OnTriggerEnter(Collider other)

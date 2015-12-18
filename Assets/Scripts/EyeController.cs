@@ -11,29 +11,34 @@ public class EyeController : MonoBehaviour {
     public LayerMask cullingMask;
     public int fov;
     public int numRays;
+    public int viewingDistance;
+
+    private int currentAngle;
+    private int offsetRays;
 
     public NavMeshAgent agent;
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("CastRays", 0f, 0.1f);
+        //InvokeRepeating("CastRays", 0f, 0.05f);
 	}
 
     void Awake()
     {
-        //hits = new List<RaycastHit>();
+        offsetRays = fov / numRays;
+
+        if (viewingDistance == 0)
+            viewingDistance = 15;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //CastRays();
+
+    // Update is called once per frame
+    void Update () {
+        CastRays();
 	}
 
     void CastRays()
     {
-        int currentAngle = fov / -2;
-        int offsetRays = fov / numRays;
-
+        currentAngle = fov / -2;
         hits.Clear();
 
         for (int i = 0; i < numRays; i++)
@@ -41,9 +46,9 @@ public class EyeController : MonoBehaviour {
             direction = Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
             hit = new RaycastHit();
 
-            if (Physics.Raycast(transform.position, direction, out hit, 30, cullingMask) == false)
+            if (Physics.Raycast(transform.position, direction, out hit, viewingDistance, cullingMask) == false)
             {
-                hit.point = transform.position + (direction * 30);
+                hit.point = transform.position + (direction * viewingDistance);
             }
 
             hits.Add(hit);

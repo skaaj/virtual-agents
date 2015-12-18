@@ -32,12 +32,17 @@ public class FlyCam : MonoBehaviour
 	void Start ()
 	{
 		//Cursor.lockState = CursorLockMode.Locked;
-		//Cursor.visible = false;
+		Cursor.visible = false;
 	}
 	
 	void Update ()
 	{
-		rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
 		rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
 		rotationY = Mathf.Clamp (rotationY, -90, 90);
 		

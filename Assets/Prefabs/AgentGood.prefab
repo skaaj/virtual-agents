@@ -52,6 +52,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &169554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 410306}
+  - 33: {fileID: 3336776}
+  - 135: {fileID: 13582128}
+  - 114: {fileID: 11428830}
+  m_Layer: 0
+  m_Name: SocialCollider
+  m_TagString: SocialCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &176368
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +91,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &410306
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children: []
+  m_Father: {fileID: 433780}
+  m_RootOrder: 3
 --- !u!4 &433780
 Transform:
   m_ObjectHideFlags: 1
@@ -80,12 +110,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: 0}
+  m_LocalPosition: {x: -106.199997, y: 1, z: -48.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460834}
-  - {fileID: 469192}
   - {fileID: 486422}
+  - {fileID: 469192}
+  - {fileID: 410306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &460834
@@ -111,7 +142,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 433780}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &486422
 Transform:
   m_ObjectHideFlags: 1
@@ -119,11 +150,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .119999997, z: .620000005}
+  m_LocalPosition: {x: 0, y: -.209999993, z: .620000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 433780}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!23 &2336648
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -203,6 +234,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176368}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &3336776
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169554}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3368230
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -260,7 +298,21 @@ MonoBehaviour:
     m_Bits: 4294967295
   fov: 120
   numRays: 12
+  viewingDistance: 10
   agent: {fileID: 19562080}
+--- !u!114 &11428830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d382b31c178c9a4eb6ac8e0307bceec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumFriendsToEngage: 2
+  TagFriends: AgentGood
 --- !u!114 &11469394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +327,18 @@ MonoBehaviour:
   meshRendererFlag: {fileID: 2367054}
   health: 0
   nav: {fileID: 0}
+--- !u!135 &13582128
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13656246
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -308,12 +372,12 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176368}
   m_Enabled: 1
-  m_Radius: .500000119
-  m_Speed: 5
+  m_Radius: .5
+  m_Speed: 15
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 720
-  m_StoppingDistance: 5
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -331,6 +395,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: New Tag
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StoppingDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

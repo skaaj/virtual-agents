@@ -14,9 +14,9 @@ public class HuntState : IAgentState
 	{
         agent.meshRendererFlag.material.color = Color.magenta;
 
-        if (agent.nav.remainingDistance < 5)
+        if (agent.nav.remainingDistance < 2.0f || agent.nav.pathStatus == NavMeshPathStatus.PathPartial)
         {
-            agent.nav.destination = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
+            agent.nav.destination = new Vector3(Random.Range(-250, 250), 0, Random.Range(-250, 250));
         }
 
         // Bouger consomme de l'energie
